@@ -45,10 +45,6 @@ function SessionForm() {
       [name]: type === 'number' ? parseFloat(value) || '' : type === 'checkbox' ? checked : value,
     });
   };
-      ...session,
-      [name]: type === 'checkbox' ? checked : value,
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

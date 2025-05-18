@@ -1,7 +1,7 @@
 jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getPayments, deletePayment } from '../services/api';
+import { getPayments, deletePayment } from '../../services/api';
 
 function PaymentList() {
   const [payments, setPayments] = useState([]);

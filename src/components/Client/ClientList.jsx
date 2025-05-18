@@ -1,6 +1,6 @@
 jsx
 import React, { useState, useEffect } from 'react';
-import { getClients, deleteClient } from '../services/api';
+import { getClients, deleteClient } from '../../services/api';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ClientList = () => {
@@ -8,22 +8,21 @@ const ClientList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
- const fetchClients = async () => {
- setLoading(true);
-    const fetchClients = async () => {
-      try {
-        const response = await getClients();
-        setClients(response.data);
-      } catch (err) {setError(err);
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+useEffect(() => {
+  const fetchClients = async () => {
+    setLoading(true);
+    try {
+      const response = await getClients();
+      setClients(response.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchClients();
-  }, []);
+  fetchClients();
+}, []);
 
  const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this client?')) {

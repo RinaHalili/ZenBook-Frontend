@@ -1,7 +1,7 @@
 jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getCourses, deleteCourse } from '../services/api';
+import { getCourses, deleteCourse } from '../../services/api'; // Adjust the import path as necessary
 
 function CourseList() {
   const [courses, setCourses] = useState([]);

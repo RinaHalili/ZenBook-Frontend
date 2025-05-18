@@ -1,7 +1,7 @@
 jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getSessions, deleteSession } from '../services/api';
+import { getSessions, deleteSession } from '../../services/api';
 
 function SessionList() {
   const [sessions, setSessions] = useState([]);
