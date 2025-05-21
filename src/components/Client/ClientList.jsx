@@ -1,40 +1,40 @@
-jsx
-import React, { useState, useEffect } from 'react';
-import { getClients, deleteClient } from '../../services/api';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { getClients, deleteClient } from "../../services/api";
+import { Link, useNavigate } from "react-router-dom";
 
 const ClientList = () => {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-useEffect(() => {
-  const fetchClients = async () => {
-    setLoading(true);
-    try {
-      const response = await getClients();
-      setClients(response.data);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchClients = async () => {
+      setLoading(true);
+      try {
+        const response = await getClients();
+        console.log("Fetched clients:", response);
+        setClients(response);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchClients();
-}, []);
+    fetchClients();
+  }, []);
 
- const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this client?')) {
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this client?")) {
       try {
         await deleteClient(id);
-        setClients(clients.filter(client => client.id !== id));
+        setClients(clients.filter((client) => client.id !== id));
         // Optionally display a success message
-        alert('Client deleted successfully!');
+        alert("Client deleted successfully!");
       } catch (err) {
-        console.error('Error deleting client:', err);
+        console.error("Error deleting client:", err);
         // Optionally display an error message
-        alert('Error deleting client.');
+        alert("Error deleting client.");
       }
     }
   };
@@ -66,9 +66,12 @@ useEffect(() => {
               <td>{client.email}</td>
               <td>{client.phoneNumber}</td>
               <td>
-                <Link to={`/clients/${client.id}`}>View</Link> |{' '}
- <Link to={`/clients/edit/${client.id}`}>Edit</Link> |{' '}
-                <button onClick={() => console.log('Delete client', client.id)}>Delete</button> {/* Placeholder for delete */}
+                <Link to={`/clients/${client.id}`}>View</Link> |{" "}
+                <Link to={`/clients/edit/${client.id}`}>Edit</Link> |{" "}
+                <button onClick={() => console.log("Delete client", client.id)}>
+                  Delete
+                </button>{" "}
+                {/* Placeholder for delete */}
               </td>
             </tr>
           ))}

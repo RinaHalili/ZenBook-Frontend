@@ -1,7 +1,6 @@
-jsx
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getClientById } from '../../services/api';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getClientById } from "../../services/api";
 
 // Add state for loading and error
 function ClientDetails() {
@@ -16,10 +15,11 @@ function ClientDetails() {
         setLoading(true);
         const data = await getClientById(id);
         setClient(data);
+        console.log("Client data:", data);
         setError(null);
       } catch (err) {
-        setError('Failed to fetch client details.');
-        console.error('Error fetching client:', err);
+        setError("Failed to fetch client details.");
+        console.error("Error fetching client:", err);
       } finally {
         setLoading(false);
       }
@@ -58,16 +58,20 @@ function ClientDetails() {
         <strong>Phone Number:</strong> {client.phoneNumber}
       </div>
       <div>
-        <strong>Date of Birth:</strong> {client.dateOfBirth ? new Date(client.dateOfBirth).toLocaleDateString() : 'N/A'}
+        <strong>Date of Birth:</strong>{" "}
+        {client.dateOfBirth
+          ? new Date(client.dateOfBirth).toLocaleDateString()
+          : "N/A"}
       </div>
       <div>
         <strong>Address:</strong> {client.address}
       </div>
       <div>
-        <strong>Profile Picture URL:</strong> {client.profilePictureUrl || 'N/A'}
+        <strong>Profile Picture URL:</strong>{" "}
+        {client.profilePictureUrl || "N/A"}
       </div>
       <div>
-        <strong>Active:</strong> {client.isActive ? 'Yes' : 'No'}
+        <strong>Active:</strong> {client.isActive ? "Yes" : "No"}
       </div>
       {/* Add more client properties as needed */}
     </div>

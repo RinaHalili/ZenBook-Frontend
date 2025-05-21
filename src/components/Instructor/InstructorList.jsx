@@ -1,7 +1,6 @@
-jsx
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getInstructors, deleteInstructor } from '../../services/api';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getInstructors, deleteInstructor } from "../../services/api";
 
 function InstructorList() {
   const [instructors, setInstructors] = useState([]);
@@ -12,7 +11,7 @@ function InstructorList() {
     const fetchInstructors = async () => {
       try {
         const response = await getInstructors();
-        setInstructors(response.data);
+        setInstructors(response);
       } catch (err) {
         setError(err);
       } finally {
@@ -26,7 +25,7 @@ function InstructorList() {
   const handleDelete = async (id) => {
     try {
       await deleteInstructor(id);
-      setInstructors(instructors.filter(instructor => instructor.id !== id));
+      setInstructors(instructors.filter((instructor) => instructor.id !== id));
     } catch (err) {
       console.error("Failed to delete instructor:", err);
       // Optionally show an error message to the user
@@ -55,15 +54,17 @@ function InstructorList() {
           </tr>
         </thead>
         <tbody>
-          {instructors.map(instructor => (
+          {instructors.map((instructor) => (
             <tr key={instructor.id}>
               <td>{instructor.fullName}</td>
               <td>{instructor.department}</td>
               <td>{instructor.email}</td>
               <td>
-                <Link to={`/instructors/${instructor.id}`}>View Details</Link> |{' '}
-                <Link to={`/instructors/edit/${instructor.id}`}>Edit</Link> |{' '}
-                <button onClick={() => handleDelete(instructor.id)}>Delete</button>
+                <Link to={`/instructors/${instructor.id}`}>View Details</Link> |{" "}
+                <Link to={`/instructors/edit/${instructor.id}`}>Edit</Link> |{" "}
+                <button onClick={() => handleDelete(instructor.id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

@@ -1,14 +1,19 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://localhost:7043/api',
 });
 
 api.interceptors.request.use(
   (config) => {
-    const tenantId = localStorage.getItem('tenantId');
-    if (tenantId) {
-      config.headers['X-Tenant-ID'] = tenantId;
+    const tenant = localStorage.getItem('tenant');
+    console.log('Tenant ID:', tenant);
+    if (tenant) {
+      config.headers['X-Tenant-ID'] = tenant;
+    }
+    const token = localStorage.getItem('authToken'); // Replace 'authToken' with your actual token key
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
   },
@@ -16,6 +21,13 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+export const isAuthenticated = () => {
+  const token = localStorage.getItem('authToken'); // Replace 'authToken' with your actual token key
+  
+  return !!token; // Returns true if the token exists, false otherwise
+};
+
 
 export const login = async (username, password, tenantId) => {
   const response = await api.post('/Auth/login', { username, password, tenantId });
@@ -28,27 +40,29 @@ export const register = async (firstName, lastName, username, email, password, t
 };
 
 export const getClients = async () => {
-  const response = await api.get('/Clients');
+  const response = await api.get('/clients');
   return response.data;
 };
 
 export const getClientById = async (id) => {
-  const response = await api.get(`/Clients/${id}`);
+  const response = await api.get(`/clients/${id}`);
   return response.data;
 };
 
 export const createClient = async (clientData) => {
-  const response = await api.post('/Clients', clientData);
+  console.log('Client data:', clientData);
+  const response = await api.post('/clients', clientData);
+  console.log('Client created:', response.data);
   return response.data;
 };
 
 export const updateClient = async (id, clientData) => {
-  const response = await api.put(`/Clients/${id}`, clientData);
+  const response = await api.put(`/clients/${id}`, clientData);
   return response.data;
 };
 
 export const deleteClient = async (id) => {
-  const response = await api.delete(`/Clients/${id}`);
+  const response = await api.delete(`/clients/${id}`);
   return response.data;
 };
 

@@ -1,7 +1,6 @@
-jsx
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getCourses, deleteCourse } from '../../services/api'; // Adjust the import path as necessary
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getCourses, deleteCourse } from "../../services/api"; // Adjust the import path as necessary
 
 function CourseList() {
   const [courses, setCourses] = useState([]);
@@ -15,7 +14,7 @@ function CourseList() {
   const fetchCourses = async () => {
     try {
       const response = await getCourses();
-      setCourses(response.data);
+      setCourses(response);
       setLoading(false);
     } catch (err) {
       setError("Failed to fetch courses.");
@@ -26,7 +25,7 @@ function CourseList() {
   const handleDelete = async (id) => {
     try {
       await deleteCourse(id);
-      setCourses(courses.filter(course => course.id !== id));
+      setCourses(courses.filter((course) => course.id !== id));
     } catch (err) {
       setError("Failed to delete course.");
     }
@@ -55,7 +54,7 @@ function CourseList() {
           </tr>
         </thead>
         <tbody>
-          {courses.map(course => (
+          {courses.map((course) => (
             <tr key={course.id}>
               <td>{course.title}</td>
               <td>{course.category}</td>

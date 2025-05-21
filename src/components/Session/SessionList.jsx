@@ -1,7 +1,6 @@
-jsx
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getSessions, deleteSession } from '../../services/api';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getSessions, deleteSession } from "../../services/api";
 
 function SessionList() {
   const [sessions, setSessions] = useState([]);
@@ -15,7 +14,7 @@ function SessionList() {
   const fetchSessions = async () => {
     try {
       const response = await getSessions();
-      setSessions(response.data);
+      setSessions(response);
       setLoading(false);
     } catch (err) {
       setError(err);
@@ -28,7 +27,7 @@ function SessionList() {
       await deleteSession(id);
       fetchSessions(); // Refresh the list after deletion
     } catch (err) {
-      console.error('Error deleting session:', err);
+      console.error("Error deleting session:", err);
       // Optionally show an error message to the user
     }
   };
@@ -44,8 +43,10 @@ function SessionList() {
   return (
     <div>
       <h2>Sessions</h2>
- <Link to="/sessions/new" className="button">Add New Session</Link>
- <table className="data-table">
+      <Link to="/sessions/new" className="button">
+        Add New Session
+      </Link>
+      <table className="data-table">
         <thead>
           <tr>
             <th>Course ID</th>
@@ -69,10 +70,10 @@ function SessionList() {
               <td>{session.sessionTime}</td>
               <td>{session.location}</td>
               <td>{session.topic}</td>
-              <td>{session.isCompleted ? 'Yes' : 'No'}</td>
+              <td>{session.isCompleted ? "Yes" : "No"}</td>
               <td>
-                <Link to={`/sessions/${session.id}`}>View</Link> |{' '}
-                <Link to={`/sessions/edit/${session.id}`}>Edit</Link> |{' '}
+                <Link to={`/sessions/${session.id}`}>View</Link> |{" "}
+                <Link to={`/sessions/edit/${session.id}`}>Edit</Link> |{" "}
                 <button onClick={() => handleDelete(session.id)}>Delete</button>
               </td>
             </tr>
