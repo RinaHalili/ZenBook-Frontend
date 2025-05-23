@@ -1,12 +1,68 @@
-# React + Vite
+# ZenBook Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the ZenBook platform, built using **React** and **Vite**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+ZenBook is a full-stack platform for scheduling and managing Yoga & Pilates sessions, offering features like instructor assignments and session planning.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend Repository:** [https://github.com/festinam/ZenBook-Backend](https://github.com/festinam/ZenBook-Backend)
+
+---
+
+## Tech Stack
+
+- **React** – Building UI with components
+- **Vite** – Development server and build tool
+- **JavaScript (ES6+)** – Application code
+- **CSS** – Styling
+- **HTML** – Static markup
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js & npm**: to install dependencies and run the app.
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/RinaHalili/ZenBook-Frontend.git
+   cd ZenBook-Frontend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables:**
+   - Create a `.env` file and add:
+     ```
+     VITE_API_URL=http://localhost:<your-backend-port>/api
+     ```
+
+4. **Run the application:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open in browser:**
+   - Visit `http://localhost:3000`
+
+---
+
+## Authors
+
+- [Rina Halili](https://github.com/RinaHalili)  
+- [Festina Mjeku](https://github.com/festinam) 
+
+---
+
+## 📄 License
+
+This project is intended for educational use only.
