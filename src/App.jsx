@@ -50,13 +50,14 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router style={{ height: "100%" }}>
       {authenticated && (
         <nav
           style={{
             marginBottom: "20px",
             padding: "10px",
-            backgroundColor: "#f0f0f0",
+            backgroundColor: "#a13392",
+            borderRadius: "15px",
           }}
         >
           <ul

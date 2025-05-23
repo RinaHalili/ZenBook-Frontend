@@ -56,6 +56,7 @@ function Login() {
     <div
       style={{
         maxWidth: "400px",
+        height: "100%",
         margin: "0 auto",
         padding: "20px",
         border: "1px solid #ccc",
@@ -120,7 +121,7 @@ function Login() {
           style={{
             width: "100%",
             padding: "10px",
-            backgroundColor: "#007bff",
+            backgroundColor: "#a13392",
             color: "white",
             border: "none",
             borderRadius: "5px",
